@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/termListFragment">
+
+    <fragment
+        android:id="@+id/termListFragment"
+        android:name="com.alekhin.javadict.fragments.list.TermListFragment"
+        android:label="fragment_term_list"
+        tools:layout="@layout/fragment_term_list" >
+        <action
+            android:id="@+id/action_termListFragment_to_termAddFragment"
+            app:destination="@id/termAddFragment" />
+        <action
+            android:id="@+id/action_termListFragment_to_termUpdateFragment"
+            app:destination="@id/termUpdateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/termAddFragment"
+        android:name="com.alekhin.javadict.fragments.add.TermAddFragment"
+        android:label="fragment_term_add"
+        tools:layout="@layout/fragment_term_add" >
+        <action
+            android:id="@+id/action_termAddFragment_to_termListFragment"
+            app:destination="@id/termListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/termUpdateFragment"
+        android:name="com.alekhin.javadict.fragments.update.TermUpdateFragment"
+        android:label="fragment_term_update"
+        tools:layout="@layout/fragment_term_update" >
+        <action
+            android:id="@+id/action_termUpdateFragment_to_termListFragment"
+            app:destination="@id/termListFragment" />
+        <argument
+            android:name="currentTerm"
+            app:argType="com.alekhin.javadict.room.Term" />
+    </fragment>
+</navigation>
