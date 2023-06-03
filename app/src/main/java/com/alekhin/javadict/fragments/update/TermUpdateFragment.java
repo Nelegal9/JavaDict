@@ -1,6 +1,7 @@
 package com.alekhin.javadict.fragments.update;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -40,6 +41,8 @@ public class TermUpdateFragment extends Fragment {
         binding.updateTermTitleTextField.setText(String.valueOf(term.termTitle));
         binding.updateTermContentTextField.setText(term.termContent);
         binding.updateTermFavorite.setChecked(term.termFavorite);
+
+        binding.updateShareIconButton.setOnClickListener(this::shareItem);
 
         binding.updateTermButton.setOnClickListener(this::updateItem);
         binding.updateBackTextButton.setOnClickListener(this::back);
@@ -94,5 +97,14 @@ public class TermUpdateFragment extends Fragment {
 
         builder.setNegativeButton(R.string.no, (dialog, which) -> {});
         builder.create().show();
+    }
+
+    private void shareItem(View v) {
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, term.termTitle + "\n\n" + term.termContent);
+        shareIntent.setType("text/plain");
+
+        startActivity(shareIntent);
     }
 }
