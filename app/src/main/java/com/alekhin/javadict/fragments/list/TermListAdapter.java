@@ -37,6 +37,7 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
         Term currentTerm = termList.get(position);
         holder.binding.termTitle.setText(currentTerm.termTitle);
         holder.binding.termContent.setText(currentTerm.termContent);
+        holder.binding.termFavorite.setChecked(currentTerm.termFavorite);
 
         holder.binding.card.setOnClickListener(v -> {
             NavDirections action = TermListFragmentDirections.actionTermListFragmentToTermUpdateFragment(currentTerm);

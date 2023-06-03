@@ -48,9 +48,10 @@ public class TermAddFragment extends Fragment {
     private void insertDataToDatabase(View v) {
         String termTitle = binding.addTermTitleTextField.getText().toString();
         String termContent = binding.addTermContentTextField.getText().toString();
+        Boolean termFavorite = binding.addTermFavorite.isChecked();
 
         if (inputCheck(termTitle, termContent)) {
-            Term term = new Term(0, termTitle, termContent);
+            Term term = new Term(0, termTitle, termContent, termFavorite);
             termViewModel.addTerm(term);
             Toast.makeText(requireContext(), R.string.add_success, Toast.LENGTH_LONG).show();
             Navigation.findNavController(v).navigate(R.id.action_termAddFragment_to_termListFragment);

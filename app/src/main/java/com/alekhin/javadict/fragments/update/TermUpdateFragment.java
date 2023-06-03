@@ -39,6 +39,7 @@ public class TermUpdateFragment extends Fragment {
 
         binding.updateTermTitleTextField.setText(String.valueOf(term.termTitle));
         binding.updateTermContentTextField.setText(term.termContent);
+        binding.updateTermFavorite.setChecked(term.termFavorite);
 
         binding.updateTermButton.setOnClickListener(this::updateItem);
         binding.updateBackTextButton.setOnClickListener(this::back);
@@ -57,9 +58,10 @@ public class TermUpdateFragment extends Fragment {
     private void updateItem(View v) {
         String termTitle = binding.updateTermTitleTextField.getText().toString();
         String termContent = binding.updateTermContentTextField.getText().toString();
+        Boolean termFavorite = binding.updateTermFavorite.isChecked();
 
         if (inputCheck(termTitle, termContent)) {
-            Term updatedTerm = new Term(term.id, termTitle, termContent);
+            Term updatedTerm = new Term(term.id, termTitle, termContent, termFavorite);
             termViewModel.updateTerm(updatedTerm);
             Toast.makeText(requireContext(), R.string.update_success, Toast.LENGTH_LONG).show();
             Navigation.findNavController(v).navigate(R.id.action_termUpdateFragment_to_termListFragment);

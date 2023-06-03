@@ -47,7 +47,7 @@ public class TermListFragment extends Fragment {
         sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
         boolean completed = sharedPreferences.getBoolean("on_boarding_completed", false);
         if (!completed) {
-            Term defaultTerm = new Term(0, "Kotlin", "Simply better Java");
+            Term defaultTerm = new Term(0, "Kotlin", "Simply better Java", true);
             termViewModel.addTerm(defaultTerm);
             completeOnBoardingProcess();
         }

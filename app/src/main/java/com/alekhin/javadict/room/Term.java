@@ -13,17 +13,21 @@ public class Term implements Parcelable {
     public int id;
     public String termTitle;
     public String termContent;
+    public Boolean termFavorite;
 
-    public Term(int id, String termTitle, String termContent) {
+    public Term(int id, String termTitle, String termContent, Boolean termFavorite) {
         this.id = id;
         this.termTitle = termTitle;
         this.termContent = termContent;
+        this.termFavorite = termFavorite;
     }
 
     protected Term(Parcel in) {
         id = in.readInt();
         termTitle = in.readString();
         termContent = in.readString();
+        byte tmpTermFavorite = in.readByte();
+        termFavorite = tmpTermFavorite == 0 ? null : tmpTermFavorite == 1;
     }
 
     public static final Creator<Term> CREATOR = new Creator<Term>() {
@@ -48,5 +52,6 @@ public class Term implements Parcelable {
         dest.writeInt(id);
         dest.writeString(termTitle);
         dest.writeString(termContent);
+        dest.writeByte((byte) (termFavorite == null ? 0 : termFavorite ? 1 : 2));
     }
 }
