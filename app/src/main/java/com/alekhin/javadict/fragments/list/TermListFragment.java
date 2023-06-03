@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -39,7 +40,7 @@ public class TermListFragment extends Fragment {
 
         firstTimeCheck();
 
-        binding.searchTerm.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+        binding.searchTerm.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 if (query != null) searchDatabase(query);

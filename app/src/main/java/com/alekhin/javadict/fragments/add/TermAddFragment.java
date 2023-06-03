@@ -26,7 +26,6 @@ public class TermAddFragment extends Fragment {
 
     private TermViewModel termViewModel;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentTermAddBinding.inflate(inflater);

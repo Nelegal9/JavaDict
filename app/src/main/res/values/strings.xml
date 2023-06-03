@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">JavaDict</string>
 
-    <string name="term_list">Term List</string>
+    <string name="term_list">Your Terms</string>
 
     <string name="search">Search…</string>
 
-    <string name="term_title">Term Title</string>
-    <string name="term_content">Term Content</string>
+    <string name="term_title">Term title</string>
+    <string name="term_content">Term content</string>
 
     <string name="new_term">New Term</string>
-    <string name="add_term">Add Term</string>
+    <string name="add_term">Add new term</string>
     <string name="add_success">Successfully added!</string>
     <string name="add_failed">Please fill out all fields.</string>
 
@@ -18,7 +18,7 @@
     <string name="back_confirm_not_to_add">Are you sure you want to return without saving?</string>
 
     <string name="edit_term">Edit Term</string>
-    <string name="update_term">Update Term</string>
+    <string name="update_term">Update current term</string>
     <string name="update_success">Successfully updated!</string>
 
     <string name="delete_title">Delete?</string>
