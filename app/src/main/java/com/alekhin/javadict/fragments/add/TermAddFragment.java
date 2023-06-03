@@ -20,6 +20,8 @@ import com.alekhin.javadict.databinding.FragmentTermAddBinding;
 import com.alekhin.javadict.room.Term;
 import com.alekhin.javadict.room.TermViewModel;
 
+import java.util.Objects;
+
 public class TermAddFragment extends Fragment {
     private FragmentTermAddBinding binding;
 
@@ -48,8 +50,8 @@ public class TermAddFragment extends Fragment {
     }
 
     private void insertDataToDatabase(View v) {
-        String termTitle = binding.addTermTitleTextField.getText().toString();
-        String termContent = binding.addTermContentTextField.getText().toString();
+        String termTitle = Objects.requireNonNull(binding.addTermTitleTextField.getText()).toString();
+        String termContent = Objects.requireNonNull(binding.addTermContentTextField.getText()).toString();
         Boolean termFavorite = binding.addTermFavorite.isChecked();
 
         if (inputCheck(termTitle, termContent)) {
@@ -65,8 +67,8 @@ public class TermAddFragment extends Fragment {
     }
 
     private void back(View v) {
-        String termTitle = binding.addTermTitleTextField.getText().toString();
-        String termContent = binding.addTermContentTextField.getText().toString();
+        String termTitle = Objects.requireNonNull(binding.addTermTitleTextField.getText()).toString();
+        String termContent = Objects.requireNonNull(binding.addTermContentTextField.getText()).toString();
 
         if (!termTitle.equals("") || !termContent.equals("")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
@@ -79,8 +81,8 @@ public class TermAddFragment extends Fragment {
     }
 
     private void shareItem(View v) {
-        String termTitle = binding.addTermTitleTextField.getText().toString();
-        String termContent = binding.addTermContentTextField.getText().toString();
+        String termTitle = Objects.requireNonNull(binding.addTermTitleTextField.getText()).toString();
+        String termContent = Objects.requireNonNull(binding.addTermContentTextField.getText()).toString();
 
         if (inputCheck(termTitle, termContent)) {
             Intent shareIntent = new Intent();

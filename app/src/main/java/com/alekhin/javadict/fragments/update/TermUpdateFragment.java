@@ -20,6 +20,8 @@ import com.alekhin.javadict.databinding.FragmentTermUpdateBinding;
 import com.alekhin.javadict.room.Term;
 import com.alekhin.javadict.room.TermViewModel;
 
+import java.util.Objects;
+
 public class TermUpdateFragment extends Fragment {
     private FragmentTermUpdateBinding binding;
 
@@ -59,8 +61,8 @@ public class TermUpdateFragment extends Fragment {
     }
 
     private void updateItem(View v) {
-        String termTitle = binding.updateTermTitleTextField.getText().toString();
-        String termContent = binding.updateTermContentTextField.getText().toString();
+        String termTitle = Objects.requireNonNull(binding.updateTermTitleTextField.getText()).toString();
+        String termContent = Objects.requireNonNull(binding.updateTermContentTextField.getText()).toString();
         Boolean termFavorite = binding.updateTermFavorite.isChecked();
 
         if (inputCheck(termTitle, termContent)) {
@@ -100,8 +102,8 @@ public class TermUpdateFragment extends Fragment {
     }
 
     private void shareItem(View v) {
-        String termTitle = binding.updateTermTitleTextField.getText().toString();
-        String termContent = binding.updateTermContentTextField.getText().toString();
+        String termTitle = Objects.requireNonNull(binding.updateTermTitleTextField.getText()).toString();
+        String termContent = Objects.requireNonNull(binding.updateTermContentTextField.getText()).toString();
 
         if (inputCheck(termTitle, termContent)) {
             Intent shareIntent = new Intent();

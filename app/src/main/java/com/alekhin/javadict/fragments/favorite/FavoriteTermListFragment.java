@@ -2,6 +2,7 @@ package com.alekhin.javadict.fragments.favorite;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,15 +16,13 @@ import com.alekhin.javadict.databinding.FragmentFavoriteTermListBinding;
 import com.alekhin.javadict.room.TermViewModel;
 
 public class FavoriteTermListFragment extends Fragment {
-    private FragmentFavoriteTermListBinding binding;
-
     FavoriteTermListAdapter favoriteTermListAdapter;
 
     private TermViewModel termViewModel;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentFavoriteTermListBinding.inflate(inflater);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        com.alekhin.javadict.databinding.FragmentFavoriteTermListBinding binding = FragmentFavoriteTermListBinding.inflate(inflater);
 
         favoriteTermListAdapter = new FavoriteTermListAdapter();
         binding.favoriteTermList.setAdapter(favoriteTermListAdapter);
