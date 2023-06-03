@@ -25,4 +25,8 @@ public class TermRepository {
     void deleteTerm(Term term) {
         termDao.deleteTerm(term);
     }
+
+    LiveData<List<Term>> searchDatabase(String searchQuery) {
+        return termDao.searchDatabase(searchQuery);
+    }
 }
