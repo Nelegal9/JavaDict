@@ -29,7 +29,7 @@ public class TermListFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        com.alekhin.javadict.databinding.FragmentTermListBinding binding = FragmentTermListBinding.inflate(inflater);
+        FragmentTermListBinding binding = FragmentTermListBinding.inflate(inflater);
 
         termListAdapter = new TermListAdapter();
         binding.termList.setAdapter(termListAdapter);

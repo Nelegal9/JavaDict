@@ -3,19 +3,18 @@ package com.alekhin.javadict.fragments.add;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import com.alekhin.javadict.NavigationViewLocker;
 import com.alekhin.javadict.R;
 import com.alekhin.javadict.databinding.FragmentTermAddBinding;
 import com.alekhin.javadict.room.Term;
@@ -28,6 +27,8 @@ public class TermAddFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ((NavigationViewLocker) requireActivity()).setNavigationViewEnabled(false);
+
         binding = FragmentTermAddBinding.inflate(inflater);
 
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
@@ -37,14 +38,13 @@ public class TermAddFragment extends Fragment {
         binding.addTermButton.setOnClickListener(this::insertDataToDatabase);
         binding.addBackTextButton.setOnClickListener(this::back);
 
-        requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                back(getView());
-            }
-        });
-
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ((NavigationViewLocker) requireActivity()).setNavigationViewEnabled(true);
     }
 
     private void insertDataToDatabase(View v) {

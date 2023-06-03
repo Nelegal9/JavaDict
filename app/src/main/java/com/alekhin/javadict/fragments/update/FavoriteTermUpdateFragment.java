@@ -16,12 +16,12 @@ import androidx.navigation.Navigation;
 
 import com.alekhin.javadict.NavigationViewLocker;
 import com.alekhin.javadict.R;
-import com.alekhin.javadict.databinding.FragmentTermUpdateBinding;
+import com.alekhin.javadict.databinding.FragmentFavoriteTermUpdateBinding;
 import com.alekhin.javadict.room.Term;
 import com.alekhin.javadict.room.TermViewModel;
 
-public class TermUpdateFragment extends Fragment {
-    private FragmentTermUpdateBinding binding;
+public class FavoriteTermUpdateFragment extends Fragment {
+    private FragmentFavoriteTermUpdateBinding binding;
 
     private TermViewModel termViewModel;
 
@@ -31,23 +31,23 @@ public class TermUpdateFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ((NavigationViewLocker) requireActivity()).setNavigationViewEnabled(false);
 
-        binding = FragmentTermUpdateBinding.inflate(inflater);
+        binding = FragmentFavoriteTermUpdateBinding.inflate(inflater);
 
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
 
         if (getArguments() != null) {
-            term = TermUpdateFragmentArgs.fromBundle(getArguments()).getCurrentTerm();
+            term = FavoriteTermUpdateFragmentArgs.fromBundle(getArguments()).getCurrentFavoriteTerm();
         }
 
-        binding.updateTermTitleTextField.setText(String.valueOf(term.termTitle));
-        binding.updateTermContentTextField.setText(term.termContent);
-        binding.updateTermFavorite.setChecked(term.termFavorite);
+        binding.updateFavoriteTermTitleTextField.setText(String.valueOf(term.termTitle));
+        binding.updateFavoriteTermContentTextField.setText(term.termContent);
+        binding.updateFavoriteTermFavorite.setChecked(term.termFavorite);
 
-        binding.updateShareIconButton.setOnClickListener(this::shareItem);
+        binding.updateFavoriteShareIconButton.setOnClickListener(this::shareItem);
 
-        binding.updateTermButton.setOnClickListener(this::updateItem);
-        binding.updateBackTextButton.setOnClickListener(this::back);
-        binding.deleteTermFloatingActionButton.setOnClickListener(this::deleteItem);
+        binding.updateFavoriteTermButton.setOnClickListener(this::updateItem);
+        binding.updateFavoriteBackTextButton.setOnClickListener(this::back);
+        binding.deleteFavoriteTermFloatingActionButton.setOnClickListener(this::deleteItem);
 
         return binding.getRoot();
     }
@@ -59,15 +59,15 @@ public class TermUpdateFragment extends Fragment {
     }
 
     private void updateItem(View v) {
-        String termTitle = binding.updateTermTitleTextField.getText().toString();
-        String termContent = binding.updateTermContentTextField.getText().toString();
-        Boolean termFavorite = binding.updateTermFavorite.isChecked();
+        String termTitle = binding.updateFavoriteTermTitleTextField.getText().toString();
+        String termContent = binding.updateFavoriteTermContentTextField.getText().toString();
+        Boolean termFavorite = binding.updateFavoriteTermFavorite.isChecked();
 
         if (inputCheck(termTitle, termContent)) {
             Term updatedTerm = new Term(term.id, termTitle, termContent, termFavorite);
             termViewModel.updateTerm(updatedTerm);
             Toast.makeText(requireContext(), R.string.update_success, Toast.LENGTH_LONG).show();
-            Navigation.findNavController(v).navigate(R.id.action_termUpdateFragment_to_termListFragment);
+            Navigation.findNavController(v).navigate(R.id.action_favoriteTermUpdateFragment_to_favoriteTermListFragment);
         } else Toast.makeText(requireContext(), R.string.add_failed, Toast.LENGTH_LONG).show();
     }
 
@@ -79,8 +79,9 @@ public class TermUpdateFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
         builder.setTitle(R.string.back_title);
         builder.setMessage(R.string.back_confirm_not_to_add);
-        builder.setPositiveButton(R.string.yes, (dialog, which) -> Navigation.findNavController(v).navigate(R.id.action_termUpdateFragment_to_termListFragment));
-        builder.setNegativeButton(R.string.no, (dialog, which) -> {});
+        builder.setPositiveButton(R.string.yes, (dialog, which) -> Navigation.findNavController(v).navigate(R.id.action_favoriteTermUpdateFragment_to_favoriteTermListFragment));
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
+        });
 
         builder.create().show();
     }
@@ -91,17 +92,18 @@ public class TermUpdateFragment extends Fragment {
         builder.setMessage(R.string.back_confirm_to_delete);
         builder.setPositiveButton(R.string.yes, (dialog, which) -> {
             termViewModel.deleteTerm(term);
-            Navigation.findNavController(v).navigate(R.id.action_termUpdateFragment_to_termListFragment);
+            Navigation.findNavController(v).navigate(R.id.action_favoriteTermUpdateFragment_to_favoriteTermListFragment);
             Toast.makeText(requireContext(), R.string.delete_success, Toast.LENGTH_LONG).show();
         });
 
-        builder.setNegativeButton(R.string.no, (dialog, which) -> {});
+        builder.setNegativeButton(R.string.no, (dialog, which) -> {
+        });
         builder.create().show();
     }
 
     private void shareItem(View v) {
-        String termTitle = binding.updateTermTitleTextField.getText().toString();
-        String termContent = binding.updateTermContentTextField.getText().toString();
+        String termTitle = binding.updateFavoriteTermTitleTextField.getText().toString();
+        String termContent = binding.updateFavoriteTermContentTextField.getText().toString();
 
         if (inputCheck(termTitle, termContent)) {
             Intent shareIntent = new Intent();
