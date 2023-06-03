@@ -71,8 +71,8 @@ public class TermUpdateFragment extends Fragment {
         } else Toast.makeText(requireContext(), R.string.add_failed, Toast.LENGTH_LONG).show();
     }
 
-    private Boolean inputCheck(String term, String termContent) {
-        return !(TextUtils.isEmpty(term) || TextUtils.isEmpty(termContent));
+    private Boolean inputCheck(String termTitle, String termContent) {
+        return !(TextUtils.isEmpty(termTitle) || TextUtils.isEmpty(termContent));
     }
 
     private void back(View v) {
@@ -100,11 +100,16 @@ public class TermUpdateFragment extends Fragment {
     }
 
     private void shareItem(View v) {
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, term.termTitle + "\n\n" + term.termContent);
-        shareIntent.setType("text/plain");
+        String termTitle = binding.updateTermTitleTextField.getText().toString();
+        String termContent = binding.updateTermContentTextField.getText().toString();
 
-        startActivity(shareIntent);
+        if (inputCheck(termTitle, termContent)) {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, termTitle + "\n\n" + termContent);
+            shareIntent.setType("text/plain");
+
+            startActivity(shareIntent);
+        } else Toast.makeText(requireContext(), R.string.add_failed, Toast.LENGTH_LONG).show();
     }
 }

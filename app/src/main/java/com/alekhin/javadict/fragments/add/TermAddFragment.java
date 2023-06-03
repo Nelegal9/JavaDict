@@ -1,6 +1,7 @@
 package com.alekhin.javadict.fragments.add;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -32,6 +33,8 @@ public class TermAddFragment extends Fragment {
 
         termViewModel = new ViewModelProvider(this).get(TermViewModel.class);
 
+        binding.addShareIconButton.setOnClickListener(this::shareItem);
+
         binding.addTermButton.setOnClickListener(this::insertDataToDatabase);
         binding.addBackTextButton.setOnClickListener(this::back);
 
@@ -58,8 +61,8 @@ public class TermAddFragment extends Fragment {
         } else Toast.makeText(requireContext(), R.string.add_failed, Toast.LENGTH_LONG).show();
     }
 
-    private Boolean inputCheck(String term, String termContent) {
-        return !(TextUtils.isEmpty(term) || TextUtils.isEmpty(termContent));
+    private Boolean inputCheck(String termTitle, String termContent) {
+        return !(TextUtils.isEmpty(termTitle) || TextUtils.isEmpty(termContent));
     }
 
     private void back(View v) {
@@ -74,5 +77,19 @@ public class TermAddFragment extends Fragment {
             builder.setNegativeButton(R.string.no, (dialog, which) -> {});
             builder.create().show();
         } else Navigation.findNavController(v).navigate(R.id.action_termAddFragment_to_termListFragment);
+    }
+
+    private void shareItem(View v) {
+        String termTitle = binding.addTermTitleTextField.getText().toString();
+        String termContent = binding.addTermContentTextField.getText().toString();
+
+        if (inputCheck(termTitle, termContent)) {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, termTitle + "\n\n" + termContent);
+            shareIntent.setType("text/plain");
+
+            startActivity(shareIntent);
+        } else Toast.makeText(requireContext(), R.string.add_failed, Toast.LENGTH_LONG).show();
     }
 }
