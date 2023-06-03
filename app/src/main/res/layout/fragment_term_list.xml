@@ -18,7 +18,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="sans-serif-black"
-            android:text="@string/term_list"
+            android:text="@string/your_term"
             android:textSize="34sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"

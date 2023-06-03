@@ -3,6 +3,7 @@ package com.alekhin.javadict;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         if (navHostFragment != null) {
             navController = navHostFragment.getNavController();
         }
+
+        NavigationUI.setupWithNavController(binding.navigationView, navController);
     }
 
     @Override

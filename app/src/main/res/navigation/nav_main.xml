@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_termListFragment_to_termUpdateFragment"
             app:destination="@id/termUpdateFragment" />
+        <action
+            android:id="@+id/action_termListFragment_to_favoriteTermListFragment"
+            app:destination="@id/favoriteTermListFragment" />
     </fragment>
     <fragment
         android:id="@+id/termAddFragment"
@@ -38,4 +41,26 @@
             android:name="currentTerm"
             app:argType="com.alekhin.javadict.room.Term" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteTermListFragment"
+        android:name="com.alekhin.javadict.FavoriteTermListFragment"
+        android:label="fragment_favorite_term_list"
+        tools:layout="@layout/fragment_favorite_term_list" >
+        <action
+            android:id="@+id/action_favoriteTermListFragment_to_termUpdateFragment"
+            app:destination="@id/termUpdateFragment" />
+        <argument
+            android:name="currentFavoriteTerm"
+            app:argType="com.alekhin.javadict.room.Term" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.alekhin.javadict.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.alekhin.javadict.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>
