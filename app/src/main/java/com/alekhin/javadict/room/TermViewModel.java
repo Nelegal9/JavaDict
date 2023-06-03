@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TermViewModel extends AndroidViewModel {
     public LiveData<List<Term>> readAllData;
-    private TermRepository termRepository;
+    private final TermRepository termRepository;
 
     public TermViewModel(@NonNull Application application) {
         super(application);
@@ -30,5 +30,9 @@ public class TermViewModel extends AndroidViewModel {
 
     public void deleteTerm(Term term) {
         termRepository.deleteTerm(term);
+    }
+
+    public LiveData<List<Term>> searchDatabase(String searchQuery) {
+        return termRepository.searchDatabase(searchQuery);
     }
 }

@@ -23,4 +23,7 @@ public interface TermDao {
 
     @Query("SELECT * FROM term ORDER BY id ASC")
     LiveData<List<Term>> readAllData();
+
+    @Query("SELECT * FROM term WHERE termTitle LIKE :searchQuery OR termContent LIKE :searchQuery")
+    LiveData<List<Term>> searchDatabase(String searchQuery);
 }
