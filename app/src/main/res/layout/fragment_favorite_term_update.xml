@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.update.TermUpdateFragment">
+    tools:context=".fragments.update.FavoriteTermUpdateFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,14 +12,12 @@
         tools:context=".MainActivity">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/updateTermTitleLabel"
+            android:id="@+id/updateFavoriteTermTitleLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
             android:fontFamily="sans-serif-black"
-            android:text="@string/edit_term"
+            android:text="@string/edit_favorite_term"
             android:textSize="34sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +25,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/updateShareIconButton"
+            android:id="@+id/updateFavoriteShareIconButton"
+            app:layout_constraintBottom_toTopOf="@+id/updateFavoriteCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/updateFavoriteTermTitleLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -35,21 +38,16 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:background="@null"
-            android:src="@drawable/share"
-            app:layout_constraintBottom_toTopOf="@+id/updateCard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/updateTermTitleLabel"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
-            android:importantForAccessibility="no" />
+            android:importantForAccessibility="no"
+            android:src="@drawable/share" />
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/updateCard"
+            android:id="@+id/updateFavoriteCard"
             app:cardCornerRadius="12dp"
             app:cardElevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateTermTitleLabel"
+            app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermTitleLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -61,7 +59,10 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/updateTermTitleTextField"
+                    android:id="@+id/updateFavoriteTermTitleTextField"
+                    app:layout_constraintEnd_toStartOf="@+id/updateFavoriteTermFavorite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -76,13 +77,14 @@
                     android:singleLine="true"
                     android:textAlignment="viewStart"
                     android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/updateTermFavorite"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/updateTermContentTextField"
+                    android:id="@+id/updateFavoriteTermContentTextField"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/updateFavoriteTermFavorite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermTitleTextField"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -94,48 +96,44 @@
                     android:hint="@string/term_content"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
-                    android:textAlignment="viewStart"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/updateTermFavorite"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/updateTermTitleTextField" />
+                    android:textAlignment="viewStart" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/updateTermFavorite"
+                    android:id="@+id/updateFavoriteTermFavorite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:button="@drawable/checkbox_favorite"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:button="@drawable/checkbox_favorite" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/updateTermButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateCard"
+            android:id="@+id/updateFavoriteTermButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
-            android:text="@string/update_term" />
+            android:text="@string/update_favorite_term"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateFavoriteCard" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/updateBackTextButton"
+            android:id="@+id/updateFavoriteBackTextButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateTermButton"
+            app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermButton"
             app:layout_constraintVertical_bias="0.0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,7 +146,7 @@
             android:text="@string/back" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/deleteTermFloatingActionButton"
+            android:id="@+id/deleteFavoriteTermFloatingActionButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.954"

@@ -20,29 +20,34 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
 
     public static class TermListViewHolder extends RecyclerView.ViewHolder {
         CardTermBinding binding;
+
         public TermListViewHolder(@NonNull CardTermBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+
+        void bind(Term term) {
+            binding.termTitle.setText(term.termTitle);
+            binding.termContent.setText(term.termContent);
+            binding.termFavorite.setChecked(term.termFavorite);
+
+            binding.card.setOnClickListener(v -> {
+                NavDirections action = TermListFragmentDirections.actionTermListFragmentToTermUpdateFragment(term);
+                Navigation.findNavController(v).navigate(action);
+            });
         }
     }
 
     @NonNull
     @Override
     public TermListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TermListViewHolder(CardTermBinding.inflate(LayoutInflater.from(parent.getContext())));
+        return new TermListViewHolder(CardTermBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull TermListViewHolder holder, int position) {
         Term currentTerm = termList.get(position);
-        holder.binding.termTitle.setText(currentTerm.termTitle);
-        holder.binding.termContent.setText(currentTerm.termContent);
-        holder.binding.termFavorite.setChecked(currentTerm.termFavorite);
-
-        holder.binding.card.setOnClickListener(v -> {
-            NavDirections action = TermListFragmentDirections.actionTermListFragmentToTermUpdateFragment(currentTerm);
-            Navigation.findNavController(v).navigate(action);
-        });
+        holder.bind(currentTerm);
     }
 
     @Override
