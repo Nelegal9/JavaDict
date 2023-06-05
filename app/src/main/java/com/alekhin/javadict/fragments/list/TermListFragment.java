@@ -21,9 +21,9 @@ import com.alekhin.javadict.room.Term;
 import com.alekhin.javadict.room.TermViewModel;
 
 public class TermListFragment extends Fragment {
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
-    TermListAdapter termListAdapter;
+    private TermListAdapter termListAdapter;
 
     private TermViewModel termViewModel;
 
@@ -60,7 +60,7 @@ public class TermListFragment extends Fragment {
     }
 
 
-    void firstTimeCheck() {
+    private void firstTimeCheck() {
         sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
         boolean completed = sharedPreferences.getBoolean("on_boarding_completed", false);
         if (!completed) {
@@ -70,7 +70,7 @@ public class TermListFragment extends Fragment {
         }
     }
 
-    void completeOnBoardingProcess() {
+    private void completeOnBoardingProcess() {
         sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("on_boarding_completed", true).apply();

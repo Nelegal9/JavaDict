@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationViewLocker {
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
     private NavController navController;
 

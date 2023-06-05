@@ -35,13 +35,15 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
             android:background="@null"
+            android:importantForAccessibility="no"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
             android:src="@drawable/share"
             app:layout_constraintBottom_toTopOf="@+id/updateCard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/updateTermTitleLabel"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
-            android:importantForAccessibility="no" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/updateCard"
@@ -79,7 +81,8 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/updateTermFavorite"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/updateTermContentTextField"
@@ -94,11 +97,13 @@
                     android:hint="@string/term_content"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
+                    android:minHeight="48dp"
                     android:textAlignment="viewStart"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/updateTermFavorite"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/updateTermTitleTextField" />
+                    app:layout_constraintTop_toBottomOf="@+id/updateTermTitleTextField"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/updateTermFavorite"
@@ -132,11 +137,6 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/updateBackTextButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateTermButton"
-            app:layout_constraintVertical_bias="0.0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -145,7 +145,14 @@
             android:layout_marginBottom="32dp"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/back" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="@string/back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateTermButton"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/deleteTermFloatingActionButton"

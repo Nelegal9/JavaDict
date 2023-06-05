@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class FavoriteTermListAdapter extends RecyclerView.Adapter<FavoriteTermListAdapter.FavoriteTermListViewHolder> {
-    List<Term> favoriteTermList = Collections.emptyList();
+    private List<Term> favoriteTermList = Collections.emptyList();
 
     public static class FavoriteTermListViewHolder extends RecyclerView.ViewHolder {
         CardFavoriteTermBinding binding;
@@ -26,7 +26,7 @@ public class FavoriteTermListAdapter extends RecyclerView.Adapter<FavoriteTermLi
             this.binding = binding;
         }
 
-        void bind(Term favoriteTerm) {
+        private void bind(Term favoriteTerm) {
             binding.favoriteTermTitle.setText(favoriteTerm.termTitle);
             binding.favoriteTermContent.setText(favoriteTerm.termContent);
 
@@ -55,7 +55,7 @@ public class FavoriteTermListAdapter extends RecyclerView.Adapter<FavoriteTermLi
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    void setFavoriteData(List<Term> termList) {
+    public void setFavoriteData(List<Term> termList) {
         this.favoriteTermList = termList;
         notifyDataSetChanged();
     }

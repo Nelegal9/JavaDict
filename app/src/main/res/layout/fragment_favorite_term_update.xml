@@ -21,16 +21,12 @@
             android:textSize="34sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/updateFavoriteShareIconButton"
-            app:layout_constraintBottom_toTopOf="@+id/updateFavoriteCard"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/updateFavoriteTermTitleLabel"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -39,7 +35,14 @@
             android:layout_marginBottom="32dp"
             android:background="@null"
             android:importantForAccessibility="no"
-            android:src="@drawable/share" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:src="@drawable/share"
+            app:layout_constraintBottom_toTopOf="@+id/updateFavoriteCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/updateFavoriteTermTitleLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/updateFavoriteCard"
@@ -60,9 +63,6 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/updateFavoriteTermTitleTextField"
-                    app:layout_constraintEnd_toStartOf="@+id/updateFavoriteTermFavorite"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -77,14 +77,14 @@
                     android:singleLine="true"
                     android:textAlignment="viewStart"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/updateFavoriteTermFavorite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/updateFavoriteTermContentTextField"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/updateFavoriteTermFavorite"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermTitleTextField"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -96,7 +96,13 @@
                     android:hint="@string/term_content"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
-                    android:textAlignment="viewStart" />
+                    android:minHeight="48dp"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/updateFavoriteTermFavorite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermTitleTextField"
+                    tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/updateFavoriteTermFavorite"
@@ -130,11 +136,6 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/updateFavoriteBackTextButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermButton"
-            app:layout_constraintVertical_bias="0.0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -143,7 +144,15 @@
             android:layout_marginBottom="32dp"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/back" />
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:text="@string/back"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/updateFavoriteTermButton"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/deleteFavoriteTermFloatingActionButton"

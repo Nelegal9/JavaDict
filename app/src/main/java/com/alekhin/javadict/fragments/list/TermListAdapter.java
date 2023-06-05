@@ -16,17 +16,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermListViewHolder> {
-    List<Term> termList = Collections.emptyList();
+    private List<Term> termList = Collections.emptyList();
 
     public static class TermListViewHolder extends RecyclerView.ViewHolder {
-        CardTermBinding binding;
+        private final CardTermBinding binding;
 
         public TermListViewHolder(@NonNull CardTermBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        void bind(Term term) {
+        private void bind(Term term) {
             binding.termTitle.setText(term.termTitle);
             binding.termContent.setText(term.termContent);
             binding.termFavorite.setChecked(term.termFavorite);
@@ -56,7 +56,7 @@ public class TermListAdapter extends RecyclerView.Adapter<TermListAdapter.TermLi
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    void setData(List<Term> termList) {
+    public void setData(List<Term> termList) {
         this.termList = termList;
         notifyDataSetChanged();
     }

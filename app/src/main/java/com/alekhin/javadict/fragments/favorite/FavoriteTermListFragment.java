@@ -16,7 +16,7 @@ import com.alekhin.javadict.databinding.FragmentFavoriteTermListBinding;
 import com.alekhin.javadict.room.TermViewModel;
 
 public class FavoriteTermListFragment extends Fragment {
-    FavoriteTermListAdapter favoriteTermListAdapter;
+    private FavoriteTermListAdapter favoriteTermListAdapter;
 
     private TermViewModel termViewModel;
 

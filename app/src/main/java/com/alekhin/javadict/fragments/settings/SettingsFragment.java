@@ -30,7 +30,7 @@ public class SettingsFragment extends Fragment {
         return binding.getRoot();
     }
 
-    void nightModeCheck() {
+    private void nightModeCheck() {
         sharedPreferences = requireActivity().getSharedPreferences("night_mode_pref", Context.MODE_PRIVATE);
         boolean nightModeOn = sharedPreferences.getBoolean("night_mode", false);
         if (!nightModeOn) {
@@ -42,7 +42,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    void switchNightMode(Boolean state) {
+    private void switchNightMode(Boolean state) {
         sharedPreferences = requireActivity().getSharedPreferences("night_mode_pref", Context.MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("night_mode", state).apply();
