@@ -8,10 +8,14 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.alekhin.javadict.authentication.LoginActivity;
 import com.alekhin.javadict.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements NavigationViewLocker {
     ActivityMainBinding binding;
@@ -32,6 +36,24 @@ public class MainActivity extends AppCompatActivity implements NavigationViewLoc
         }
 
         NavigationUI.setupWithNavController(binding.navigationView, navController);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        if (user != null) binding.currentUser.setText(user.getEmail());
+
+        binding.logoutButton.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override
@@ -45,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements NavigationViewLoc
         binding.drawerLayout.setDrawerLockMode(lockMode);
     }
 
-    void checkTheme() {
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+    private void checkTheme() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("night_mode_pref", Context.MODE_PRIVATE);
         boolean nightModeOn = sharedPreferences.getBoolean("night_mode", false);
         if (!nightModeOn) {AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
